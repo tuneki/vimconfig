@@ -78,11 +78,12 @@ set list
 " カーソル行の上下へのオフセットを設定する
 set scrolloff=4
 " 256色設定
-"set t_Co=256
+set t_Co=256
 " 暗い背景
 "set background=dark
 " カラースキーマ
 "colorscheme solarized
+colorscheme molokai
 
 
 " Tab系
