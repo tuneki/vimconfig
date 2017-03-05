@@ -34,18 +34,19 @@ filetype plugin indent on
 " 不可視ファイルを表示する
 let NERDTreeShowHidden = 1
 " ツリーと編集領域を移動する
-nmap <Leader><Tab> <C-w>w
+nmap <Space><Tab> <C-w>w
 
 " ファイルが指定されていなければNERD treeを有効にする
 if argc() == 0
   let g:nerdtree_tabs_open_on_console_startup = 1
 end
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 " ファイル保存時に余分なスペースを削除する
 autocmd BufWritePre * :FixWhitespace
 
 " 検索モードを開く
-nmap <Leader>f :CtrlP<CR>
+nmap <Space>f :CtrlP<CR>
 
 " コメントの追加・削除を行なう
 nmap <Leader>/ <Plug>(caw:zeropos:toggle)
@@ -167,9 +168,13 @@ nnoremap j gj
 nnoremap k gk
 " 検索によるハイライト表示を解除する
 nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
-
 " <Leader>バインド
-let mapleader = "\<Space>"
-
-
-
+let mapleader = ","
+" ,のデフォルトの機能は、\で使えるように退避
+noremap \  ,
+noremap <Space> zzj
+noremap <S-h>   ^
+noremap <S-j>   }
+noremap <S-k>   {
+noremap <S-l>   $
+nnoremap <Space>/  * " 単語検索
