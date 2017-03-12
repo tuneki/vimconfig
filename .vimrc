@@ -53,8 +53,8 @@ nmap <Leader>/ <Plug>(caw:zeropos:toggle)
 vmap <Leader>/ <Plug>(caw:zeropos:toggle)
 
 " j/kによる移動を速くする
-nmap j <Plug>(accelerated_jk_gj)
-nmap k <Plug>(accelerated_jk_gk)
+"nmap j <Plug>(accelerated_jk_gj)
+"nmap k <Plug>(accelerated_jk_gk)
 
 " 自動補完機能を有効にする
 let g:neocomplete#enable_at_startup = 1
@@ -89,13 +89,14 @@ set number
 "コードの色分け
 syntax on
 " 現在の行を強調表示
-set cursorline
+"set cursorline
+set nocursorline " 動作が重い場合、offにする
 " 現在の行を強調表示（縦）
 "set cursorcolumn
 " 行末の1文字先までカーソルを移動できるように
 "set virtualedit=onemore
 " ビープ音を可視化
-set visualbell
+"set visualbell
 " 括弧入力時の対応する括弧を表示
 set showmatch
 set matchtime=1
@@ -173,6 +174,7 @@ let mapleader = ","
 " ,のデフォルトの機能は、\で使えるように退避
 noremap \  ,
 noremap <Space> zzj
+noremap <S-Space> zzk
 noremap <S-h>   ^
 noremap <S-j>   }
 noremap <S-k>   {
@@ -201,12 +203,12 @@ endif
 " Use vsplit mode ; refs http://qiita.com/kefir_/items/c725731d33de4d8fb096
 if has("vim_starting") && !has('gui_running') && has('vertsplit')
   function! EnableVsplitMode()
-  | " enable origin mode and left/right margins
-  | let &t_CS = "y"
-  | let &t_ti = &t_ti . "\e[?6;69h"
-  | let &t_te = "\e[?6;69l\e[999H" . &t_te
-  | let &t_CV = "\e[%i%p1%d;%p2%ds"
-  | call writefile([ "\e[?6;69h" ], "/dev/tty", "a")
+    " enable origin mode and left/right margins
+    let &t_CS = "y"
+    let &t_ti = &t_ti . "\e[?6;69h"
+    let &t_te = "\e[?6;69l\e[999H" . &t_te
+    let &t_CV = "\e[%i%p1%d;%p2%ds"
+    call writefile([ "\e[?6;69h" ], "/dev/tty", "a")
   endfunction
 
   " old vim does not ignore CPR
@@ -218,4 +220,5 @@ if has("vim_starting") && !has('gui_running') && has('vertsplit')
   map <expr> <t_F9> EnableVsplitMode()
   let &t_RV .= "\e[?6;69h\e[1;3s\e[3;9H\e[6n\e[0;0s\e[?6;69l"
 endif
+
 
